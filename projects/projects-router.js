@@ -91,4 +91,47 @@ router.put('/:id', (req, res) => {
         })
 });
 
+router.get('/:id', (req, res) => {
+    db
+        .get(id)
+        .then(db => {
+            if (db === 0) {
+            res
+                .status(404)
+                .json({ message: "unable to locate"});
+            } else {
+                res
+                    .status(200)
+                    .json(db)
+            }
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .json({ error: "The projects could not be retrieved."})
+        })
+})
+
+router.get('/:id/actions', (req, res) => {
+    const id = req.params.id;
+    db
+        .getProjectActions(id)
+        .then(db => {
+            if (db === 0) {
+            res
+                .status(404)
+                .json({ message: "unable to locate"});
+            } else {
+                res
+                    .status(200)
+                    .json(db)
+            }
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .json({ error: "The projects could not be retrieved."})
+        })
+})
+
 module.exports = router;
