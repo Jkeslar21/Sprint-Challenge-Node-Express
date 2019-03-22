@@ -1,3 +1,8 @@
-// play this: https://www.youtube.com/watch?v=d-diB65scQU
+require('dotenv').config();
+const server = require('./server');
 
-// code away!
+const port = process.env.PORT || 4000;
+const greeting = process.env.GREETING;
+server.listen(port, () => {
+    console.log(`\n ** ${greeting}, server is listening on http://localhost:${port} **\n`)
+});
