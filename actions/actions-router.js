@@ -6,7 +6,7 @@ const db = require('../data/helpers/actionModel');
 
 router.post('/', (req, res) => {
     const actionsInfo = req.body;
-    !actionsInfo.description.substring(0, 128) || !actionsInfo.project_id || !actionsInfo.notes
+    !actionsInfo.description || !actionsInfo.project_id || !actionsInfo.notes
     ? res
         .status(400).json({ errorMessage: "Please provide a project_id, description (max limit of 128 characters), and notes for the action." })
     : db 
@@ -54,7 +54,7 @@ router.delete('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
     const id = req.params.id;
     const actionsInfo = req.body;
-    !actionsInfo.description.substring(0, 128) || !actionsInfo.project_id || !actionsInfo.notes
+    !actionsInfo.description || !actionsInfo.project_id || !actionsInfo.notes
     ? res
         .status(400)
         .json({ errorMessage: "Please provide a project_id, description (max limit of 128 characters), and notes for the action." })
